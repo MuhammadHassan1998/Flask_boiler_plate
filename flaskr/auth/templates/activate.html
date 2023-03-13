@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('.static',filename='css/style.css') }}">
+{% endblock %}
+{% block content %}
+Your account was successfully created. Please click the link below<br>
+to confirm your email address and activate your account:
+
+<p>
+<a href="{{ confirm_url }}">{{ confirm_url }}</a>
+</p>
+
+<p>
+--<br>
+Questions? Comments? Email hello@myapp.com.
+</p>
+{% endblock %}

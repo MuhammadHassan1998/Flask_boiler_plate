@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}
+  Users
+{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('.static',filename='css/users.css') }}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="people-nearby">
+              {% for user in users %}
+              <div id="form-id" >
+                <div class="nearby-user">
+                  <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                      <img src={{ user.profile_image }} alt="user" class="profile-photo-lg">
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                      <h5><a href="#" class="profile-link">{{ user.username }}</a></h5>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-primary pull-right alert-btn" onclick="remove('{{user.userid}}')" >Add Friend</button>
+                  </div>
+                </div>
+              </div>
+              </div>
+              {% endfor %}
+            </div>
+	    </div>
+    </div>
+    <script>
+      function remove(id){
+        $.ajax({
+              url:`{{ url_for('user_bp.sendrequest') }}`,
+              type:'post',
+              data:{
+                user_id:id,
+              },
+              success:function(response){
+                swal({
+                  text: 'Friend Request Send',
+                  icon: "success",
+                });
+              }
+            });
+      }
+    </script>
+</div>
+{% endblock %}

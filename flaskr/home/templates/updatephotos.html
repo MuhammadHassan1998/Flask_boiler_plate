@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<form method="post" action={{ url_for('home_bp.updateuserphotos') }} enctype="multipart/form-data" >
+    <div class="mb-3">
+        <input type="hidden" value="profile" name="upload" >
+        <label for="formFile" class="form-label">Upload Profile Image</label>
+        <input class="form-control" type="file" id="formFile" name="file">
+    </div>
+    <button class="btn btn-primary btn-icon-text btn-edit-profile" type="submit" >Upload</button>
+</form>
+<br>
+<br>
+<form method="post" action={{ url_for('home_bp.updateuserphotos') }} enctype="multipart/form-data" >
+    <div class="mb-3">
+        <input type="hidden" value="cover" name="upload" >
+        <label for="formFile" class="form-label">Upload Cover Image</label>
+        <input class="form-control" type="file" id="formFile" name="file">
+    </div>
+    <button class="btn btn-primary btn-icon-text btn-edit-profile" type="submit" >Upload</button>
+</form>
+{% endblock %}

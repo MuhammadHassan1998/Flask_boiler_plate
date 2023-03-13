@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('.static',filename='css/style.css') }}">
+{% endblock %}
+{% block content %}
+<section class="vh-100" style="background-color: #8aa6d9;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+             
+                <h3 class="mb-5">Forgot Password</h3>
+    
+                <div class="form-outline mb-4">
+                  <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX-2">Email</label>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" onclick="remove()" type="submit">Send mail</button>
+    
+                <hr class="my-4">
+
+              <a href={{ url_for('auth_bp.login') }}><button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                type="submit">Login</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    function remove(){
+      let email= document.getElementById("typeEmailX-2").value
+      console.log("email",email)
+      $.ajax({
+            url:`{{ url_for('auth_bp.forgotpassword') }}`,
+            type:'post',
+            data:{
+              email:email,
+            },
+            success:function(response){
+              swal({
+                text: 'Email Send Successfully',
+                icon: "success",
+              });
+            }
+          });
+    }
+  </script>
+{% endblock %}

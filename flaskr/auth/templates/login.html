@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('.static',filename='css/style.css') }}">
+{% endblock %}
+{% block content %}
+  <section class="vh-100" style="background-color: #8aa6d9;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <form action={{ url_for('auth_bp.login') }} method="post" >
+                <h3 class="mb-5">Sign in</h3>
+    
+                <div class="form-outline mb-4">
+                  <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX-2">Email</label>
+                </div>
+    
+                <div class="form-outline mb-4">
+                  <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
+                  <label class="form-label" for="typePasswordX-2">Password</label>
+                </div>
+    
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-start mb-4">
+                  <a class="form-check-label" for="form1Example3" href={{ url_for('auth_bp.forgotpassword') }}> Forgot password </a>
+                </div>
+    
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+    
+                <hr class="my-4">
+
+              </form>
+              <a href={{ url_for('auth_bp.register') }}><button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                type="submit">Register</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
